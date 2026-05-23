@@ -1,0 +1,72 @@
+[
+  {
+    "id": "mistake-01",
+    "knowledgePointId": "math-7-ch1-03",
+    "question": "|-(-5)| 的值是多少？",
+    "commonError": "容易算成 -5，混淆负号和绝对值",
+    "correctAnswer": "5"
+  },
+  {
+    "id": "mistake-02",
+    "knowledgePointId": "math-7-ch1-04",
+    "question": "-3 的相反数是多少？",
+    "commonError": "容易认为相反数就是负数，写成 --3 或漏掉负号",
+    "correctAnswer": "3"
+  },
+  {
+    "id": "mistake-03",
+    "knowledgePointId": "math-7-ch1-06",
+    "question": "3 - (-5) = ？",
+    "commonError": "容易算成 -2，减去负数时忘记变号",
+    "correctAnswer": "8"
+  },
+  {
+    "id": "mistake-04",
+    "knowledgePointId": "math-7-ch1-08",
+    "question": "(-3) × (-2) = ？",
+    "commonError": "容易算成 -6，负负得正规则混淆",
+    "correctAnswer": "6"
+  },
+  {
+    "id": "mistake-05",
+    "knowledgePointId": "math-7-ch1-09",
+    "question": "(-12) ÷ (-3) = ？",
+    "commonError": "容易算成 -4，除法的符号规则与乘法混淆",
+    "correctAnswer": "4"
+  },
+  {
+    "id": "mistake-06",
+    "knowledgePointId": "math-7-ch1-10",
+    "question": "(-2)³ = ？",
+    "commonError": "容易算成 -8 或 8 混淆，负数的奇数次幂为负",
+    "correctAnswer": "-8"
+  },
+  {
+    "id": "mistake-07",
+    "knowledgePointId": "math-7-ch1-11",
+    "question": "将 0.000025 用科学记数法表示",
+    "commonError": "容易写成 2.5×10⁻⁴ 或 25×10⁻⁶，指数计算错误",
+    "correctAnswer": "2.5×10⁻⁵"
+  },
+  {
+    "id": "mistake-08",
+    "knowledgePointId": "math-7-ch1-05",
+    "question": "(-3) + (+5) + (-7) = ？",
+    "commonError": "容易在多个正负数相加时符号出错",
+    "correctAnswer": "-5"
+  },
+  {
+    "id": "mistake-09",
+    "knowledgePointId": "math-7-ch1-18",
+    "question": "0 有倒数吗？",
+    "commonError": "容易认为 0 的倒数是 0，实际上 0 没有倒数",
+    "correctAnswer": "0 没有倒数"
+  },
+  {
+    "id": "mistake-10",
+    "knowledgePointId": "math-7-ch1-15",
+    "question": "比较 -3 和 -5 的大小",
+    "commonError": "容易认为 -5 > -3，混淆了绝对值大小与数的大小关系",
+    "correctAnswer": "-3 > -5"
+  }
+]
