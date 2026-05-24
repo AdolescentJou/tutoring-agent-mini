@@ -71,24 +71,34 @@ function checkDependencies(
 
 /**
  * 推断知识点的掌握程度
+ * 注意：此函数用于 store 时标注实体 mastery，也用于图谱展示
+ * - 如果 memoryContext 中已包含该知识点名称 → 根据关键词判断等级
+ * - 如果是首次匹配到该知识点（正在讨论中）→ 至少标记为 basic
  */
-function inferMastery(kpName: string, memoryContext: string): MasteryLevel {
-  if (!memoryContext.includes(kpName)) {
-    return "not_started" as MasteryLevel;
+function inferMastery(kpName: string, memoryContext: string, isMatched = false): MasteryLevel {
+  // 已在历史记忆中出现 → 按关键词详细判断
+  if (memoryContext.includes(kpName)) {
+    if (
+      memoryContext.includes("mastered") ||
+      (memoryContext.includes(kpName) && memoryContext.includes("掌握"))
+    ) {
+      return "mastered" as MasteryLevel;
+    }
+    if (
+      memoryContext.includes("proficient") ||
+      memoryContext.includes("熟练")
+    ) {
+      return "proficient" as MasteryLevel;
+    }
+    return "basic" as MasteryLevel;
   }
-  if (
-    memoryContext.includes("mastered") ||
-    (memoryContext.includes(kpName) && memoryContext.includes("掌握"))
-  ) {
-    return "mastered" as MasteryLevel;
+
+  // 首次匹配到该知识点 → 标记为 basic（正在学习）
+  if (isMatched) {
+    return "basic" as MasteryLevel;
   }
-  if (
-    memoryContext.includes("proficient") ||
-    memoryContext.includes("熟练")
-  ) {
-    return "proficient" as MasteryLevel;
-  }
-  return "basic" as MasteryLevel;
+
+  return "not_started" as MasteryLevel;
 }
 
 export async function POST(request: NextRequest) {
@@ -192,7 +202,7 @@ export async function POST(request: NextRequest) {
         id: kp.id,
         name: kp.name,
         action: "studied",
-        mastery: inferMastery(kp.name, memoryContext),
+        mastery: inferMastery(kp.name, memoryContext, true),
       }));
 
       await memoService.store(

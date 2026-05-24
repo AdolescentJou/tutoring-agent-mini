@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback, type KeyboardEvent } from "react";
 import type { ChatMessage } from "@/types";
+import KnowledgeGraph from "@/components/KnowledgeGraph";
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -9,6 +10,8 @@ export default function ChatPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [lastFailedMessage, setLastFailedMessage] = useState<string | null>(null);
+  // 知识图谱面板状态
+  const [showGraph, setShowGraph] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -16,6 +19,11 @@ export default function ChatPage() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
+
+  /** 切换知识图谱面板 */
+  const toggleGraph = useCallback(() => {
+    setShowGraph((prev) => !prev);
+  }, []);
 
   const sendMessage = useCallback(async (messageText?: string) => {
     const trimmed = (messageText || input).trim();
@@ -99,13 +107,35 @@ export default function ChatPage() {
             <h1>🧮 小数数学辅导</h1>
             <p>初中数学智能辅导助手</p>
           </div>
-          {messages.length > 0 && (
-            <button onClick={clearChat} className="clear-btn" title="清空对话">
-              🗑️ 清空
+          <div className="header-actions">
+            <button
+              onClick={toggleGraph}
+              className={`memory-btn ${showGraph ? "active" : ""}`}
+              title={showGraph ? "隐藏知识图谱" : "查看知识图谱"}
+            >
+              {showGraph ? "📊 收起" : "📊 知识图谱"}
             </button>
-          )}
+            {messages.length > 0 && (
+              <button onClick={clearChat} className="clear-btn" title="清空对话">
+                🗑️ 清空
+              </button>
+            )}
+          </div>
         </div>
       </header>
+
+      {/* 知识图谱面板 */}
+      {showGraph && (
+        <div className="graph-panel">
+          <div className="graph-panel-header">
+            <span className="graph-panel-title">📊 知识图谱 — 学习路径</span>
+            <button onClick={() => setShowGraph(false)} className="memory-close-btn">✕</button>
+          </div>
+          <div className="graph-panel-body">
+            <KnowledgeGraph />
+          </div>
+        </div>
+      )}
 
       {/* 消息列表 */}
       <div className="chat-messages">

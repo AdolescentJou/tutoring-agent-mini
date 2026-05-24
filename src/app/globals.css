@@ -75,6 +75,209 @@ body {
   background: rgba(255, 255, 255, 0.35);
 }
 
+/* Header Actions */
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.memory-btn {
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.memory-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.memory-btn.active {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.memory-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== Knowledge Graph Panel ===== */
+.graph-panel {
+  background: linear-gradient(135deg, #f0f4ff, #eef2ff);
+  border-bottom: 1px solid #dce4ff;
+  flex-shrink: 0;
+}
+
+.graph-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  border-bottom: 1px solid #e2e8f5;
+}
+
+.graph-panel-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.graph-panel-body {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* ===== Knowledge Graph Visualization ===== */
+.knowledge-graph {
+  position: relative;
+}
+
+.graph-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 24px;
+  background: white;
+  border-bottom: 1px solid #edf0f7;
+  font-size: 0.78rem;
+  flex-wrap: wrap;
+}
+
+.legend-title {
+  font-weight: 600;
+  color: #4b5563;
+  margin-right: 4px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.graph-stats {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 24px;
+  background: white;
+  border-bottom: 1px solid #edf0f7;
+  font-size: 0.78rem;
+  color: #8898aa;
+}
+
+.graph-svg {
+  display: block;
+  min-height: 300px;
+  cursor: default;
+}
+
+.graph-edge {
+  stroke: #94a3b8;
+  stroke-width: 1.5;
+  fill: none;
+  transition: stroke 0.2s, stroke-width 0.2s;
+}
+
+.graph-edge.highlight {
+  stroke: #667eea;
+  stroke-width: 2.5;
+}
+
+.graph-node-group {
+  cursor: pointer;
+}
+
+.graph-label {
+  fill: #374151;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Graph Tooltip */
+.graph-tooltip {
+  position: absolute;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+  pointer-events: none;
+  min-width: 180px;
+  animation: fadeIn 0.15s ease;
+}
+
+.tooltip-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+}
+
+.tooltip-mastery {
+  margin-bottom: 6px;
+}
+
+.mastery-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.tooltip-rel {
+  font-size: 0.78rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.rel-label {
+  color: #999;
+  font-size: 0.72rem;
+}
+
+/* Graph Loading/Empty */
+.graph-loading,
+.graph-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  gap: 8px;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.graph-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ===== Messages Area ===== */
 .chat-messages {
   flex: 1;
